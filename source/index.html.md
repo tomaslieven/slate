@@ -1,239 +1,1319 @@
----
-title: API Reference Tomas
+--- 
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+title: traccar 
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+language_tabs: 
+   - shell 
 
-includes:
-  - errors
+toc_footers: 
+   - <a href='#'>Sign Up for a Developer Key</a> 
+   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
 
-search: true
----
+includes: 
+   - errors 
 
-# Introduction
+search: true 
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+--- 
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Introduction 
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+**Version:** 4.2 
 
-# Authentication
+# Authentication 
 
-> To authorize, use this code:
+|basic|*Basic*|
+|---|---| 
 
-```ruby
-require 'kittn'
+# /COMMANDS
+## ***GET*** 
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+**Summary:** Fetch a list of Saved Commands
 
-```python
-import kittn
+**Description:** Without params, it returns a list of Drivers the user has access to
 
-api = kittn.authorize('meowmeowmeow')
-```
+### HTTP Request 
+`***GET*** /commands` 
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+**Parameters**
 
-```javascript
-const kittn = require('kittn');
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
 
-let api = kittn.authorize('meowmeowmeow');
-```
+**Responses**
 
-> Make sure to replace `meowmeowmeow` with your API key.
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## ***POST*** 
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+**Summary:** Create a Saved Command
 
-`Authorization: meowmeowmeow`
+### HTTP Request 
+`***POST*** /commands` 
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+**Parameters**
 
-# Kittens
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
 
-## Get All Kittens
+**Responses**
 
-```ruby
-require 'kittn'
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+# /COMMANDS/{ID}
+## ***PUT*** 
 
-```python
-import kittn
+**Summary:** Update a Saved Command
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+### HTTP Request 
+`***PUT*** /commands/{id}` 
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+**Parameters**
 
-```javascript
-const kittn = require('kittn');
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+**Responses**
 
-> The above command returns JSON structured like this:
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+## ***DELETE*** 
 
-This endpoint retrieves all kittens.
+**Summary:** Delete a Saved Command
 
-### HTTP Request
+### HTTP Request 
+`***DELETE*** /commands/{id}` 
 
-`GET http://example.com/api/kittens`
+**Parameters**
 
-### Query Parameters
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+**Responses**
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
 
-## Get a Specific Kitten
+# /COMMANDS/SEND
+## ***GET*** 
 
-```ruby
-require 'kittn'
+**Summary:** Fetch a list of Saved Commands supported by Device at the moment
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+**Description:** Return a list of saved commands linked to Device and its groups, filtered by current Device protocol support
 
-```python
-import kittn
+### HTTP Request 
+`***GET*** /commands/send` 
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+**Parameters**
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
 
-```javascript
-const kittn = require('kittn');
+**Responses**
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 400 | Could happen when the user doesn't have permission for the device |
 
-> The above command returns JSON structured like this:
+## ***POST*** 
 
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
+**Summary:** Dispatch commands to device
 
-This endpoint retrieves a specific kitten.
+**Description:** Dispatch a new command or Saved Command if _body.id_ set
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### HTTP Request 
+`***POST*** /commands/send` 
 
-### HTTP Request
+**Parameters**
 
-`GET http://example.com/kittens/<ID>`
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body |  | Yes |  |
 
-### URL Parameters
+**Responses**
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+| Code | Description |
+| ---- | ----------- |
+| 200 | Command sent |
+| 202 | Command queued |
+| 400 | Could happen when the user doesn't have permission or an incorrect command _type_ for the device |
 
-## Delete a Specific Kitten
+# /COMMANDS/TYPES
+## ***GET*** 
 
-```ruby
-require 'kittn'
+**Summary:** Fetch a list of available Commands for the Device or all possible Commands if Device ommited
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+### HTTP Request 
+`***GET*** /commands/types` 
 
-```python
-import kittn
+**Parameters**
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| deviceId | query |  | No | integer |
+| textChannel | query |  | No | boolean |
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+**Responses**
 
-```javascript
-const kittn = require('kittn');
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 400 | Could happen when trying to fetch from a device the user does not have permission |
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+# /DEVICES
+## ***GET*** 
 
-> The above command returns JSON structured like this:
+**Summary:** Fetch a list of Devices
 
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
+**Description:** Without any params, returns a list of the user's devices
 
-This endpoint deletes a specific kitten.
+### HTTP Request 
+`***GET*** /devices` 
 
-### HTTP Request
+**Parameters**
 
-`DELETE http://example.com/kittens/<ID>`
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+| id | query | To fetch one or more devices. Multiple params can be passed like `id=31&id=42` | No | integer |
+| uniqueId | query | To fetch one or more devices. Multiple params can be passed like `uniqueId=333331&uniqieId=44442` | No | string |
 
-### URL Parameters
+**Responses**
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 400 | No permission |
 
+## ***POST*** 
+
+**Summary:** Create a Device
+
+### HTTP Request 
+`***POST*** /devices` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /DEVICES/{ID}
+## ***PUT*** 
+
+**Summary:** Update a Device
+
+### HTTP Request 
+`***PUT*** /devices/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a Device
+
+### HTTP Request 
+`***DELETE*** /devices/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /DEVICES/{ID}/ACCUMULATORS
+## ***PUT*** 
+
+**Summary:** Update total distance and hours of the Device
+
+### HTTP Request 
+`***PUT*** /devices/{id}/accumulators` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /GROUPS
+## ***GET*** 
+
+**Summary:** Fetch a list of Groups
+
+**Description:** Without any params, returns a list of the Groups the user belongs to
+
+### HTTP Request 
+`***GET*** /groups` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***POST*** 
+
+**Summary:** Create a Group
+
+### HTTP Request 
+`***POST*** /groups` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 400 | No permission |
+
+# /GROUPS/{ID}
+## ***PUT*** 
+
+**Summary:** Update a Group
+
+### HTTP Request 
+`***PUT*** /groups/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a Group
+
+### HTTP Request 
+`***DELETE*** /groups/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /PERMISSIONS
+## ***POST*** 
+
+**Summary:** Link an Object to another Object
+
+### HTTP Request 
+`***POST*** /permissions` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 400 | No permission |
+
+## ***DELETE*** 
+
+**Summary:** Unlink an Object from another Object
+
+### HTTP Request 
+`***DELETE*** /permissions` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /POSITIONS
+## ***GET*** 
+
+**Summary:** Fetches a list of Positions
+
+**Description:** Without any params, it returns a list of last known positions for all the user's Devices. _from_ and _to_ fields are not required with _id_
+
+### HTTP Request 
+`***GET*** /positions` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| deviceId | query | _deviceId_ is optional, but requires the _from_ and _to_ parameters when used | No | integer |
+| from | query | in IS0 8601 format. eg. `1963-11-22T18:30:00Z` | No | dateTime |
+| to | query | in IS0 8601 format. eg. `1963-11-22T18:30:00Z` | No | dateTime |
+| id | query | To fetch one or more positions. Multiple params can be passed like `id=31&id=42` | No | integer |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /SERVER
+## ***GET*** 
+
+**Summary:** Fetch Server information
+
+### HTTP Request 
+`***GET*** /server` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***PUT*** 
+
+**Summary:** Update Server information
+
+### HTTP Request 
+`***PUT*** /server` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /SESSION
+## ***GET*** 
+
+**Summary:** Fetch Session information
+
+### HTTP Request 
+`***GET*** /session` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | query |  | No | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 404 | Not Found |
+
+## ***POST*** 
+
+**Summary:** Create a new Session
+
+### HTTP Request 
+`***POST*** /session` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| email | formData |  | Yes | string |
+| password | formData |  | Yes | password |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 401 | Unauthorized |
+
+## ***DELETE*** 
+
+**Summary:** Close the Session
+
+### HTTP Request 
+`***DELETE*** /session` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /USERS
+## ***GET*** 
+
+**Summary:** Fetch a list of Users
+
+### HTTP Request 
+`***GET*** /users` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| userId | query | Can only be used by admin or manager users | No | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+| 400 | No Permission |
+
+## ***POST*** 
+
+**Summary:** Create a User
+
+### HTTP Request 
+`***POST*** /users` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /USERS/{ID}
+## ***PUT*** 
+
+**Summary:** Update a User
+
+### HTTP Request 
+`***PUT*** /users/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a User
+
+### HTTP Request 
+`***DELETE*** /users/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /NOTIFICATIONS
+## ***GET*** 
+
+**Summary:** Fetch a list of Notifications
+
+**Description:** Without params, it returns a list of Notifications the user has access to
+
+### HTTP Request 
+`***GET*** /notifications` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***POST*** 
+
+**Summary:** Create a Notification
+
+### HTTP Request 
+`***POST*** /notifications` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /NOTIFICATIONS/{ID}
+## ***PUT*** 
+
+**Summary:** Update a Notification
+
+### HTTP Request 
+`***PUT*** /notifications/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a Notification
+
+### HTTP Request 
+`***DELETE*** /notifications/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /NOTIFICATIONS/TYPES
+## ***GET*** 
+
+**Summary:** Fetch a list of available Notification types
+
+### HTTP Request 
+`***GET*** /notifications/types` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /NOTIFICATIONS/TEST
+## ***POST*** 
+
+**Summary:** Send test notification to current user via Email and SMS
+
+### HTTP Request 
+`***POST*** /notifications/test` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | Successful sending |
+| 400 | Could happen if sending has failed |
+
+# /GEOFENCES
+## ***GET*** 
+
+**Summary:** Fetch a list of Geofences
+
+**Description:** Without params, it returns a list of Geofences the user has access to
+
+### HTTP Request 
+`***GET*** /geofences` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***POST*** 
+
+**Summary:** Create a Geofence
+
+### HTTP Request 
+`***POST*** /geofences` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /GEOFENCES/{ID}
+## ***PUT*** 
+
+**Summary:** Update a Geofence
+
+### HTTP Request 
+`***PUT*** /geofences/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a Geofence
+
+### HTTP Request 
+`***DELETE*** /geofences/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /EVENTS/{ID}
+## ***GET*** 
+
+### HTTP Request 
+`***GET*** /events/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /REPORTS/ROUTE
+## ***GET*** 
+
+**Summary:** Fetch a list of Positions within the time period for the Devices or Groups
+
+**Description:** At least one _deviceId_ or one _groupId_ must be passed
+
+### HTTP Request 
+`***GET*** /reports/route` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /REPORTS/EVENTS
+## ***GET*** 
+
+**Summary:** Fetch a list of Events within the time period for the Devices or Groups
+
+**Description:** At least one _deviceId_ or one _groupId_ must be passed
+
+### HTTP Request 
+`***GET*** /reports/events` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+| type | query | % can be used to return events of all types | No | array |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /REPORTS/SUMMARY
+## ***GET*** 
+
+**Summary:** Fetch a list of ReportSummary within the time period for the Devices or Groups
+
+**Description:** At least one _deviceId_ or one _groupId_ must be passed
+
+### HTTP Request 
+`***GET*** /reports/summary` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /REPORTS/TRIPS
+## ***GET*** 
+
+**Summary:** Fetch a list of ReportTrips within the time period for the Devices or Groups
+
+**Description:** At least one _deviceId_ or one _groupId_ must be passed
+
+### HTTP Request 
+`***GET*** /reports/trips` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /REPORTS/STOPS
+## ***GET*** 
+
+**Summary:** Fetch a list of ReportStops within the time period for the Devices or Groups
+
+**Description:** At least one _deviceId_ or one _groupId_ must be passed
+
+### HTTP Request 
+`***GET*** /reports/stops` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /STATISTICS
+## ***GET*** 
+
+**Summary:** Fetch server Statistics
+
+### HTTP Request 
+`***GET*** /statistics` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /CALENDARS
+## ***GET*** 
+
+**Summary:** Fetch a list of Calendars
+
+**Description:** Without params, it returns a list of Calendars the user has access to
+
+### HTTP Request 
+`***GET*** /calendars` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***POST*** 
+
+**Summary:** Create a Calendar
+
+### HTTP Request 
+`***POST*** /calendars` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /CALENDARS/{ID}
+## ***PUT*** 
+
+**Summary:** Update a Calendar
+
+### HTTP Request 
+`***PUT*** /calendars/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a Calendar
+
+### HTTP Request 
+`***DELETE*** /calendars/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /ATTRIBUTES/COMPUTED
+## ***GET*** 
+
+**Summary:** Fetch a list of Attributes
+
+**Description:** Without params, it returns a list of Attributes the user has access to
+
+### HTTP Request 
+`***GET*** /attributes/computed` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***POST*** 
+
+**Summary:** Create an Attribute
+
+### HTTP Request 
+`***POST*** /attributes/computed` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /ATTRIBUTES/COMPUTED/{ID}
+## ***PUT*** 
+
+**Summary:** Update an Attribute
+
+### HTTP Request 
+`***PUT*** /attributes/computed/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete an Attribute
+
+### HTTP Request 
+`***DELETE*** /attributes/computed/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /DRIVERS
+## ***GET*** 
+
+**Summary:** Fetch a list of Drivers
+
+**Description:** Without params, it returns a list of Drivers the user has access to
+
+### HTTP Request 
+`***GET*** /drivers` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***POST*** 
+
+**Summary:** Create a Driver
+
+### HTTP Request 
+`***POST*** /drivers` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /DRIVERS/{ID}
+## ***PUT*** 
+
+**Summary:** Update a Driver
+
+### HTTP Request 
+`***PUT*** /drivers/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a Driver
+
+### HTTP Request 
+`***DELETE*** /drivers/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+# /MAINTENANCE
+## ***GET*** 
+
+**Summary:** Fetch a list of Maintenance
+
+**Description:** Without params, it returns a list of Maintenance the user has access to
+
+### HTTP Request 
+`***GET*** /maintenance` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***POST*** 
+
+**Summary:** Create a Maintenance
+
+### HTTP Request 
+`***POST*** /maintenance` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+# /MAINTENANCE/{ID}
+## ***PUT*** 
+
+**Summary:** Update a Maintenance
+
+### HTTP Request 
+`***PUT*** /maintenance/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | OK |
+
+## ***DELETE*** 
+
+**Summary:** Delete a Maintenance
+
+### HTTP Request 
+`***DELETE*** /maintenance/{id}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+|  |  |  | No |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 | No Content |
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
